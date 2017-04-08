@@ -1,0 +1,140 @@
+﻿
+/*Main.aspx的样式*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, p, blockquote
+{
+    margin: 0;
+    padding: 0;
+}
+
+*
+{
+    font-family: "微软雅黑";
+    font-size: 13px;
+}
+
+h2
+{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.demo-info
+{
+    background: #FFFEE6;
+    color: #8F5700;
+    padding: 12px;
+}
+
+.demo-tip
+{
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    float: left;
+}
+
+/*----------------------------工具箱-----------------------------
+ *2014-6-4
+*/
+#tools a
+{
+    width: 20px;
+    height: 20px;
+    border: 1px solid #95B8E7;
+    margin: 3px;
+}
+
+/*begin--------------------菜单下面的选项区------------------------
+ *2014-6-4
+ *yf
+ */
+#alloption
+{
+    position: absolute;
+    margin-top: 8px;
+}
+
+    #alloption li
+    {
+        float: left;
+        list-style: none;
+    }
+
+        #alloption li select, #penwidthshow, #alphashow, #ptpenBlurShow
+        {
+            width: 50px;
+        }
+
+
+/*end--------------------菜单下面的选项区------------------------*/
+
+/*html原始的输入框*/
+.txtInputStyle
+{
+    border: 1px solid #95B8E7;
+}
+
+/*画布阴影效果及样式*/
+.drawWindow
+{
+    background-color: White;
+    margin: 5px auto 0 auto;
+    border: 1px solid #95B8E7;
+    -moz-box-shadow: 3px 3px 4px #95B8E7;
+    -webkit-box-shadow: 3px 3px 4px #95B8E7;
+    box-shadow: 3px 3px 4px #95B8E7;
+}
+
+/*begin------------------画布--------------------------------------
+*/
+#showcanvas /*最终展示画布在最外层*/
+{
+    z-index: 2;
+    border: 1px solid gray;
+    cursor: crosshair;
+}
+
+#tempcanvas /*临时画布在内层*/
+{
+    z-index: 1;
+    background-color: White;
+    border: 1px solid gray;
+    cursor: crosshair;
+}
+
+#gridcanvas
+{ /*网格画布*/
+    cursor: crosshair;
+}
+
+.drawWindow canvas
+{
+    position: absolute;
+}
+
+.newCanvas
+{ /*新增的图层*/
+    border: 1px solid gray;
+    cursor: crosshair;
+}
+/*end------------------画布------------------------------------
+
+/*协同处理下的表情*/
+#mnfaces img:hover, #mnfacesgrp img:hover
+{
+    border: 1px solid #083C86;
+}
+
+/*快捷键样式*/
+.quickevent
+{
+    margin-left: 50px;
+}
+
+/*快捷键效果处理样式*/
+.quickeventeffect
+{
+    margin-left: 20px;
+}

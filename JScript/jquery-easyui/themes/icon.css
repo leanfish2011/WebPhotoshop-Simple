@@ -1,0 +1,455 @@
+/*图标*/
+
+.icon-new {
+    background: url('icons/new.png') no-repeat center center;
+}
+
+.icon-open {
+    background: url('icons/open.png') no-repeat center center;
+}
+
+.icon-fromCam {
+    background: url('icons/fromCam.png') no-repeat center center;
+}
+
+.icon-closeall {
+    background: url('icons/closeall.png') no-repeat center center;
+}
+
+.icon-saveall {
+    background: url('icons/saveall.png') no-repeat center center;
+}
+
+.icon-saveas {
+    background: url('icons/saveas.png') no-repeat center center;
+}
+
+.icon-copy {
+    background: url('icons/copy.png') no-repeat center center;
+}
+
+.icon-paste {
+    background: url('icons/paste.png') no-repeat center center;
+}
+
+.icon-selectall {
+    background: url('icons/selectall.png') no-repeat center center;
+}
+
+.icon-clear {
+    background: url('icons/clear.png') no-repeat center center;
+}
+
+.icon-autolevel {
+    background: url('icons/autolevel.png') no-repeat center center;
+}
+
+.icon-colorpalettes {
+    background: url('icons/colorpalettes.png') no-repeat center center;
+}
+
+.icon-imgsize {
+    background: url('icons/imgsize.png') no-repeat center center;
+}
+
+.icon-canvassize {
+    background: url('icons/canvassize.png') no-repeat center center;
+}
+
+.icon-log {
+    background: url('icons/log.png') no-repeat center center;
+}
+
+.icon-rotate180 {
+    background: url('icons/rotate180.png') no-repeat center center;
+}
+
+.icon-rotatew90 {
+    background: url('icons/rotatew90.png') no-repeat center center;
+}
+
+.icon-rotatee90 {
+    background: url('icons/rotatee90.png') no-repeat center center;
+}
+
+.icon-inputcc {
+    background: url('icons/inputcc.png') no-repeat center center;
+}
+
+.icon-horizonrotate {
+    background: url('icons/horizonrotate.png') no-repeat center center;
+}
+
+.icon-verticalrotate {
+    background: url('icons/verticalrotate.png') no-repeat center center;
+}
+
+.icon-tailor {
+    background: url('icons/tailor.png') no-repeat center center;
+}
+
+.icon-newlevel {
+    background: url('icons/newlevel.png') no-repeat center center;
+}
+
+.icon-copylevel {
+    background: url('icons/copylevel.png') no-repeat center center;
+}
+
+.icon-uplevel {
+    background: url('icons/uplevel.png') no-repeat center center;
+}
+
+.icon-downlevel {
+    background: url('icons/downlevel.png') no-repeat center center;
+}
+
+.icon-levelinfo {
+    background: url('icons/levelinfo.png') no-repeat center center;
+}
+
+.icon-blank {
+    background: url('icons/blank.gif') no-repeat center center;
+}
+
+.icon-add {
+    background: url('icons/edit_add.png') no-repeat center center;
+}
+
+.icon-edit {
+    background: url('icons/pencil.png') no-repeat center center;
+}
+
+.icon-remove {
+    background: url('icons/edit_remove.png') no-repeat center center;
+}
+
+.icon-save {
+    background: url('icons/filesave.png') no-repeat center center;
+}
+
+.icon-cut {
+    background: url('icons/cut.png') no-repeat center center;
+}
+
+.icon-ok {
+    background: url('icons/ok.png') no-repeat center center;
+}
+
+.icon-no {
+    background: url('icons/no.png') no-repeat center center;
+}
+
+.icon-cancel {
+    background: url('icons/cancel.png') no-repeat center center;
+}
+
+.icon-reload {
+    background: url('icons/reload.png') no-repeat center center;
+}
+
+.icon-search {
+    background: url('icons/search.png') no-repeat center center;
+}
+
+.icon-print {
+    background: url('icons/print.png') no-repeat center center;
+}
+
+.icon-back {
+    background: url('icons/back.png') no-repeat center center;
+}
+
+.icon-help {
+    background: url('icons/help.png') no-repeat center center;
+}
+
+.icon-undo {
+    background: url('icons/undo.png') no-repeat center center;
+}
+
+.icon-redo {
+    background: url('icons/redo.png') no-repeat center center;
+}
+
+.icon-sum {
+    background: url('icons/sum.png') no-repeat center center;
+}
+
+.icon-tip {
+    background: url('icons/tip.png') no-repeat center center;
+}
+
+.icon-filter {
+    background: url('icons/filter.png') no-repeat center center;
+}
+
+.icon-mini-add {
+    background: url('icons/mini_add.png') no-repeat center center;
+}
+
+.icon-mini-edit {
+    background: url('icons/mini_edit.png') no-repeat center center;
+}
+
+.icon-mini-refresh {
+    background: url('icons/mini_refresh.png') no-repeat center center;
+}
+
+.icon-blackwhite {
+    background: url('icons/blackwhite.png') no-repeat center center;
+}
+
+.icon-opsitecolor {
+    background: url('icons/opsitecolor.png') no-repeat center center;
+}
+
+.icon-light {
+    background: url('icons/light.png') no-repeat center center;
+}
+
+.icon-blur {
+    background: url('icons/blur.png') no-repeat center center;
+}
+
+.icon-cloud {
+    background: url('icons/cloud.png') no-repeat center center;
+}
+
+.icon-sharpen {
+    background: url('icons/sharpen.png') no-repeat center center;
+}
+
+.icon-float {
+    background: url('icons/float.png') no-repeat center center;
+}
+
+.icon-curve {
+    background: url('icons/curve.png') no-repeat center center;
+}
+
+.icon-turnold {
+    background: url('icons/turnold.png') no-repeat center center;
+}
+
+.icon-turngreen {
+    background: url('icons/turngreen.png') no-repeat center center;
+}
+
+.icon-turnred {
+    background: url('icons/turnred.png') no-repeat center center;
+}
+
+.icon-turnblue {
+    background: url('icons/turnblue.png') no-repeat center center;
+}
+
+.icon-soft {
+    background: url('icons/soft.png') no-repeat center center;
+}
+
+.icon-painting {
+    background: url('icons/painting.png') no-repeat center center;
+}
+
+.icon-wood {
+    background: url('icons/wood.png') no-repeat center center;
+}
+
+.icon-zoomin {
+    background: url('icons/zoomin.png') no-repeat center center;
+}
+
+.icon-zoomout {
+    background: url('icons/zoomout.png') no-repeat center center;
+}
+
+.icon-ruler {
+    background: url('icons/ruler.png') no-repeat center center;
+}
+
+.icon-grid {
+    background: url('icons/grid.png') no-repeat center center;
+}
+
+.icon-fullscreen {
+    background: url('icons/fullscreen.png') no-repeat center center;
+}
+
+.icon-default {
+    background: url('icons/default.png') no-repeat center center;
+}
+
+.icon-bootstrap {
+    background: url('icons/bootstrap.png') no-repeat center center;
+}
+
+.icon-metro-blue {
+    background: url('icons/metro-blue.png') no-repeat center center;
+}
+
+.icon-metro-green {
+    background: url('icons/metro-green.png') no-repeat center center;
+}
+
+.icon-metro-red {
+    background: url('icons/metro-red.png') no-repeat center center;
+}
+
+.icon-reset {
+    background: url('icons/reset.png') no-repeat center center;
+}
+
+.icon-tools {
+    background: url('icons/tools.png') no-repeat center center;
+}
+
+.icon-option {
+    background: url('icons/option.png') no-repeat center center;
+}
+
+.icon-history {
+    background: url('icons/history.png') no-repeat center center;
+}
+
+.icon-layer {
+    background: url('icons/layer.png') no-repeat center center;
+}
+
+.icon-state {
+    background: url('icons/state.png') no-repeat center center;
+}
+
+.icon-searchimg {
+    background: url('icons/searchimg.png') no-repeat center center;
+}
+
+.icon-imgindex {
+    background: url('icons/imgindex.png') no-repeat center center;
+}
+
+.icon-communite {
+    background: url('icons/communite.png') no-repeat center center;
+}
+
+.icon-helpsite {
+    background: url('icons/helpsite.png') no-repeat center center;
+}
+
+.icon-about {
+    background: url('icons/about.png') no-repeat center center;
+}
+
+.icon-send {
+    background: url('icons/send.png') no-repeat center center;
+}
+
+.icon-undoall {
+    background: url('icons/undoall.png') no-repeat center center;
+}
+
+.icon-redoall {
+    background: url('icons/redoall.png') no-repeat center center;
+}
+
+.icon-level {
+    background: url('icons/level.png') no-repeat center center;
+}
+
+.icon-background {
+    background: url('icons/background.png') no-repeat center center;
+}
+
+.icon-getimg {
+    background: url('icons/getimg.png') no-repeat center center;
+}
+
+/*------工具箱-----------*/
+.icon-btnSelect {
+    background: url('../../../Images/tools/Select.png') no-repeat center center;
+}
+
+.icon-btnMove {
+    background: url('../../../Images/tools/Move.png') no-repeat center center;
+}
+
+.icon-btnLasso {
+    background: url('../../../Images/tools/Lasso.png') no-repeat center center;
+}
+
+.icon-btnZoomAll {
+    background: url('../../../Images/tools/ZoomAll.png') no-repeat center center;
+}
+
+.icon-btnHand {
+    background: url('../../../Images/tools/Hand.png') no-repeat center center;
+}
+
+.icon-btnFill {
+    background: url('../../../Images/tools/Fill.png') no-repeat center center;
+}
+
+.icon-btnGradient {
+    background: url('../../../Images/tools/Gradient.png') no-repeat center center;
+}
+
+.icon-btnPaintBrush {
+    background: url('../../../Images/tools/PaintBrush.png') no-repeat center center;
+}
+
+.icon-btnPencil {
+    background: url('../../../Images/tools/Pencil.png') no-repeat center center;
+}
+
+.icon-btnEraser {
+    background: url('../../../Images/tools/Eraser.png') no-repeat center center;
+}
+
+.icon-btnZoomMiro {
+    background: url('../../../Images/tools/ZoomMiro.png') no-repeat center center;
+}
+
+.icon-btnSelectCut {
+    background: url('../../../Images/tools/SelectCut.png') no-repeat center center;
+}
+
+.icon-btnText {
+    background: url('../../../Images/tools/Text.png') no-repeat center center;
+}
+
+.icon-btnLine {
+    background: url('../../../Images/tools/Line.png') no-repeat center center;
+}
+
+.icon-btnCurve {
+    background: url('../../../Images/tools/Curve.png') no-repeat center center;
+}
+
+.icon-btnRectangle {
+    background: url('../../../Images/tools/Rectangle.png') no-repeat center center;
+}
+
+.icon-btnEllipse {
+    background: url('../../../Images/tools/Ellipse.png') no-repeat center center;
+}
+
+.icon-btnTriangle {
+    background: url('../../../Images/tools/Triangle.png') no-repeat center center;
+}
+
+.icon-btnPolygon {
+    background: url('../../../Images/tools/Polygon.png') no-repeat center center;
+}
+
+.icon-btnOtherShap {
+    background: url('../../../Images/tools/OtherShap.png') no-repeat center center;
+}
+
+.icon-btnClone {
+    background: url('../../../Images/tools/Clone.png') no-repeat center center;
+}
+
+.icon-btnAlpha {
+    background: url('../../../Images/tools/Alpha.png') no-repeat center center;
+}
+/*--------工具箱结束-------------*/

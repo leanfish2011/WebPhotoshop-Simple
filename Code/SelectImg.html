@@ -1,0 +1,163 @@
+﻿<!--名称：图片选择。
+    功能：文件》打开。进行图片选择。
+    作者：Tim
+    时间：2014-08-03-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图片选择</title>
+    <link href="../JScript/jquery-easyui/themes/default/easyui.css" rel="stylesheet"
+        type="text/css" />
+    <link rel="shortcut icon" href="../Images/log.ico" />
+    <link href="../JScript/jquery-easyui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/main.css" rel="stylesheet" type="text/css" />
+    <script src="../JScript/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="../JScript/jquery-easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../JScript/jquery-easyui/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <style type="text/css">
+        #showlselimg {
+            width: 99%;
+            height: 250px;
+            border: 1px solid #ccc;
+            overflow: auto;
+        }
+
+            #showlselimg img {
+                width: 100px;
+                height: 100px;
+            }
+
+        #allimgs {
+            margin: 5px 5px 5px 20px;
+        }
+
+        #showlselimg img:hover {
+            width: 96px;
+            height: 96px;
+            border: 2px solid #B8D6FB;
+        }
+
+        #imgDrawArea {
+            width: 98%;
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #95B8E7;
+            margin-left: 7px;
+        }
+
+        .images {
+            width: 100px;
+            height: 100px;
+            border: 0px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="easyui-tabs" data-options="fit:true">
+        <div id="serverimg" title="附带图片">
+            <p style="margin-left: 27px; margin-top: 7px; margin-bottom: 5px;">
+                选择图片：
+            </p>
+            <div id="showlselimg">
+                <table id='allimgs'>
+                    <tr>
+                        <td>
+                            <div>
+                                <img src='../Images/files/a.jpg' />
+                            </div>
+                            <div align='center'>
+                                a.jpg
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src='../Images/files/b.jpg' />
+                            </div>
+                            <div align='center'>
+                                b.jpg
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src='../Images/files/c.jpg' />
+                            </div>
+                            <div align='center'>
+                                c.jpg
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src='../Images/files/b.jpg' />
+                            </div>
+                            <div align='center'>
+                                b.jpg
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src='../Images/files/star.jpg' />
+                            </div>
+                            <div align='center'>
+                                star.jpg
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src='../Images/files/bird.png' />
+                            </div>
+                            <div align='center'>
+                                bird.jpg
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src='../Images/files/win.jpg' />
+                            </div>
+                            <div align='center'>
+                                win.jpg
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-left: 27px; margin-top: 7px; margin-bottom: 5px;">
+                图片名：
+                <input id="txtImgName" type="text" style="width: 250px; border: 1px solid #26A0DA;" />
+                <a id="btnSelImgSure" onclick="Sure();" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a> <a id="btnSelImgCancel" onclick="Cancel();" href="#" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'">取消</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var imgSrc = ""; //图片路径
+    var timer = null;
+    $('#showlselimg img').live('click', function (event) {
+        timer && clearTimeout(timer);
+        imgSrc = this.src;//获取图片路径，用于绘制
+        var imgTitle = $(this).siblings('p').html();//获取兄弟节点
+        timer = setTimeout(function () {
+            $("#txtImgName").val(imgTitle); //获取图片名称
+        }, 300);
+    }).live('dblclick', function (event) {
+        timer && clearTimeout(timer);
+        imgSrc = this.src; //获取图片路径，用于绘制
+        var imgTitle = $(this).siblings('p').html();
+        $("#txtImgName").val(imgTitle); //获取图片名称
+        Sure();
+    });
+
+    //确定
+    function Sure() {
+        var imgInfo = "{\"mark\":\"selectimg\",\"imgSrc\":\"" + imgSrc + "\"}";
+        parent.closeMyWindow(imgInfo);
+    }
+
+    //取消
+    function Cancel() {
+        //关闭窗体
+        parent.closeMyWindow();
+    }
+</script>
+</html>

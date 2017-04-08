@@ -1,0 +1,873 @@
+﻿<!--名称：主程序
+    功能：WebPhotoshop主要功能
+    作者：Tim
+    时间：2014-08-03
+
+    2017-04-08，精简版发布。去掉了协同绘图等操作，纯粹前端
+    -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gb2312">
+    <title>WebPhotoshop</title>
+    <div id="content" />
+    <link href="JScript/jquery-easyui/themes/default/easyui.css" rel="stylesheet"
+        type="text/css" />
+    <link rel="shortcut icon" href="Images/log.ico" />
+    <link href="JScript/jquery-easyui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/main.css" rel="stylesheet" type="text/css" />
+    <script src="JScript/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="JScript/jquery-easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="JScript/jquery-easyui/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <link href="JScript/jpicker-1.1.6/css/jPicker-1.1.6.css" rel="stylesheet" type="text/css" />
+    <link href="JScript/jpicker-1.1.6/jPicker.css" rel="stylesheet" type="text/css" />
+    <script src="JScript/jpicker-1.1.6/jpicker-1.1.6.js" type="text/javascript"></script>
+    <script src="JScript/CodeJS/fullscreen.js" type="text/javascript"></script>
+    <style type="text/css">
+        .ke-icon-audioPlugin
+        {
+            background-position: 0px -640px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-screenshotPlugin
+        {
+            background-position: 0px -496px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-morePlugin
+        {
+            background-position: 0px -1024px;
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body class="easyui-layout">
+    <div data-options="region:'north'" style="height: 65px">
+        <div id="menu">
+            <div style="border: 1px solid #95B8E7; background: #EDF5FA;">
+                <a href="#" id="menumnFile" class="easyui-menubutton" data-options="menu:'#mnFile'">&nbsp;&nbsp;文件&nbsp;&nbsp;</a>
+                <a href="#" class="easyui-menubutton" data-options="menu:'#mnEdit'">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a>
+                <a href="#" class="easyui-menubutton" data-options="menu:'#mnImage'">&nbsp;&nbsp;图像&nbsp;&nbsp;</a>
+                <a href="#" class="easyui-menubutton" data-options="menu:'#mnLevel'">&nbsp;&nbsp;图层&nbsp;&nbsp;</a>
+                <a href="#" class="easyui-menubutton" data-options="menu:'#mnConslate'">&nbsp;&nbsp;效果&nbsp;&nbsp;</a>
+                <a href="#" class="easyui-menubutton" data-options="menu:'#mnView'">&nbsp;&nbsp;视图&nbsp;&nbsp;</a>
+                <a href="#" class="easyui-menubutton" data-options="menu:'#mnWindows'">&nbsp;&nbsp;窗口&nbsp;&nbsp;</a>
+                <a href="#" class="easyui-menubutton" data-options="menu:'#mnHelp'">&nbsp;&nbsp;帮助&nbsp;&nbsp;</a>
+            </div>
+            <div id="mnFile" style="width: 150px;">
+                <div id="mnFileNew" data-options="iconCls:'icon-new'">
+                    新建
+                </div>
+              <div id="mnFileopen" data-options="iconCls:'icon-open'">
+                    打开<span class="quickevent">Crtl+G</span>
+                </div>
+       <!--          <div id="mnFilefromCam" data-options="iconCls:'icon-fromCam'">
+                    获取<span class="quickevent">Crtl+M</span>
+                </div>
+                 <div class="menu-sep">
+                </div>
+                <div id="mnFilecancel" data-options="iconCls:'icon-cancel'">
+                    关闭
+                </div>
+                <div id="mnFilecloseall" data-options="iconCls:'icon-closeall'">
+                    关闭全部
+                </div>
+                <div id="mnFilesave" data-options="iconCls:'icon-save'">
+                    保存
+                </div>
+                <div id="mnFilesaveall" data-options="iconCls:'icon-saveall'">
+                    保存全部
+                </div>
+                <div id="mnFilesaveas" data-options="iconCls:'icon-saveas'">
+                    另存为
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnFileprint" data-options="iconCls:'icon-print'">
+                    打印
+                </div>-->
+                <div class="menu-sep">
+                </div>
+                <div id="mnFileexist" data-options="iconCls:'icon-back'">
+                    退出
+                </div>
+            </div>
+            <div id="mnEdit" style="width: 150px;">
+                <div id="mnEditundo" data-options="iconCls:'icon-undo',disabled:true">
+                    撤销<span class="quickevent">Crtl+Z</span>
+                </div>
+                <div id="mnEditredo" data-options="iconCls:'icon-redo',disabled:true">
+                    重做<span class="quickevent">Crtl+Y</span>
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnEditcut" data-options="iconCls:'icon-cut'">
+                    剪切
+                </div>
+                <div id="mnEditcopy" data-options="iconCls:'icon-copy'">
+                    复制
+                </div>
+                <div id="mnEditpaste" data-options="iconCls:'icon-paste'">
+                    粘贴
+                </div>
+                <div id="mnEditselectall" data-options="iconCls:'icon-selectall'">
+                    选择所有
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnEditclear" data-options="iconCls:'icon-clear'">
+                    清空<span class="quickevent">Crtl+Q</span>
+                </div>
+            </div>
+            <div id="mnImage" style="width: 150px;">
+                <div>
+                    <span>调整</span>
+                    <div style="width: 150px;">
+                        <div id="mnImageautolevel" data-options="iconCls:'icon-autolevel'">
+                            色阶
+                        </div>
+                        <div id="mnImagecolorpalettes" data-options="iconCls:'icon-colorpalettes'">
+                            色相/饱和度
+                        </div>
+                    </div>
+                </div>
+                <div id="mnImageimgsize" data-options="iconCls:'icon-imgsize'">
+                    图像大小
+                </div>
+                <div id="mnImagecanvassize" data-options="iconCls:'icon-canvassize'">
+                    画布大小
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div>
+                    <span>旋转画布</span>
+                    <div style="width: 150px;">
+                        <div id="mnImagerotate180" data-options="iconCls:'icon-rotate180'">
+                            旋转180度
+                        </div>
+                        <div id="mnImagerotatew90" data-options="iconCls:'icon-rotatew90'">
+                            顺时针旋转90度
+                        </div>
+                        <div id="mnImagerotatee90" data-options="iconCls:'icon-rotatee90'">
+                            逆时针旋转90度
+                        </div>
+                        <div id="mnImageinputcc" data-options="iconCls:'icon-inputcc'">
+                            旋转任意角度
+                        </div>
+                        <div class="menu-sep">
+                        </div>
+                        <div id="mnImagehorizonrotate" data-options="iconCls:'icon-horizonrotate'">
+                            水平翻转
+                        </div>
+                        <div id="mnImageverticalrotate" data-options="iconCls:'icon-verticalrotate'">
+                            垂直翻转
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnImagetailor" data-options="iconCls:'icon-tailor'">
+                    裁剪
+                </div>
+            </div>
+            <div id="mnLevel" style="width: 150px;">
+                <div id="mnLevelnewlevel" data-options="iconCls:'icon-newlevel'">
+                    新建图层
+                </div>
+                <div id="mnLevelno" data-options="iconCls:'icon-no'">
+                    删除图层
+                </div>
+                <div id="mnLevelcopylevel" data-options="iconCls:'icon-copylevel'">
+                    复制图层
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnLeveluplevel" data-options="iconCls:'icon-uplevel'">
+                    向上移动图层
+                </div>
+                <div id="mnLeveldownlevel" data-options="iconCls:'icon-downlevel'">
+                    向下移动图层
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnLevellevelinfo" data-options="iconCls:'icon-levelinfo'">
+                    图层属性
+                </div>
+            </div>
+            <div id="mnConslate" style="width: 150px;">
+                <div id="mnConslateblackwhite" data-options="iconCls:'icon-blackwhite'">
+                    黑白<span class="quickeventeffect">Ctrl+Shift+W</span>
+                </div>
+                <div id="mnConslateopsitecolor" data-options="iconCls:'icon-opsitecolor'">
+                    反色<span class="quickeventeffect">Ctrl+Shift+I</span>
+                </div>
+                <div id="mnConslatelight" data-options="iconCls:'icon-light'">
+                    亮度/对比度
+                </div>
+                <div id="mnConslateblur" data-options="iconCls:'icon-blur'">
+                    模糊<span class="quickeventeffect">Ctrl+Shift+B</span>
+                </div>
+                <div id="mnConslatecloud" data-options="iconCls:'icon-cloud'">
+                    雾化<span class="quickeventeffect">Ctrl+Shift+M</span>
+                </div>
+                <div id="mnConslatesharpen" data-options="iconCls:'icon-sharpen'">
+                    锐化<span class="quickeventeffect">Ctrl+Shift+S</span>
+                </div>
+                <div id="mnConslatefloat" data-options="iconCls:'icon-float'">
+                    浮雕<span class="quickeventeffect">Ctrl+Shift+F</span>
+                </div>
+                <div id="mnConslatesoft" data-options="iconCls:'icon-soft'">
+                    柔化<span class="quickeventeffect">Ctrl+Shift+T</span>
+                </div>
+                <div id="mnConslatepainting" data-options="iconCls:'icon-painting'">
+                    油画<span class="quickeventeffect">Ctrl+Shift+P</span>
+                </div>
+                <div id="mnConslatewood" data-options="iconCls:'icon-wood'">
+                    积木<span class="quickeventeffect">Ctrl+Shift+D</span>
+                </div>
+                <div id="mnConslateCuve" data-options="iconCls:'icon-curve'">
+                    雕刻<span class="quickeventeffect">Ctrl+Shift+V</span>
+                </div>
+                <div id="mnConslateTurnOld" data-options="iconCls:'icon-turnold'">
+                    怀旧<span class="quickeventeffect">Ctrl+Shift+O</span>
+                </div>
+                <div>
+                    <span>蒙版</span>
+                    <div style="width: 150px;">
+                        <div id="mnConslateTurnRed" data-options="iconCls:'icon-turnred'">
+                            红色蒙版<span class="quickeventeffect">Ctrl+Shift+R</span>
+                        </div>
+                        <div id="mnConslateTurnGreen" data-options="iconCls:'icon-turngreen'">
+                            绿色蒙版<span class="quickeventeffect">Ctrl+Shift+G</span>
+                        </div>
+                        <div id="mnConslateTurnBlue" data-options="iconCls:'icon-turnblue'">
+                            蓝色蒙版<span class="quickeventeffect">Ctrl+Shift+B</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mnView" style="width: 150px;">
+                <div id="mnViewzoomin" data-options="iconCls:'icon-zoomin'">
+                    放大<span style="margin-left: 45px;">Crtl+Up</span>
+                </div>
+                <div id="mnViewzoomout" data-options="iconCls:'icon-zoomout'">
+                    缩小<span style="margin-left:30px;">Crtl+Down</span>
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnViewruler" data-options="iconCls:'icon-ruler'">
+                    标尺
+                </div>
+                <div id="mnViewgrid" data-options="iconCls:'icon-grid'">
+                    网格
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnViewfullscreen" data-options="iconCls:'icon-fullscreen'">
+                    全屏模式
+                </div>
+                <div>
+                    <span>皮肤设置</span>
+                    <div style="width: 150px;">
+                        <div id="default" style="background-color: #C9D3E2;" data-options="iconCls:'icon-default'">
+                            默认
+                        </div>
+                        <div id="bootstrap" data-options="iconCls:'icon-bootstrap'">
+                            bootstrap
+                        </div>
+                        <div id="metro-blue" data-options="iconCls:'icon-metro-blue'">
+                            metro-blue
+                        </div>
+                        <div id="metro-green" data-options="iconCls:'icon-metro-green'">
+                            metro-green
+                        </div>
+                        <div id="metro-red" data-options="iconCls:'icon-metro-red'">
+                            metro-red
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnViewreset" data-options="iconCls:'icon-reset'">
+                    重置界面
+                </div>
+            </div>
+            <div id="mnWindows" style="width: 150px;">
+                <div id="mnWindowstools" data-options="iconCls:'icon-tools'">
+                    工具箱
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnWindowshistory" data-options="iconCls:'icon-history'">
+                    操作
+                </div>
+<!--                <div class="menu-sep">
+                </div>
+                <div id="mnWindowssearchimg" data-options="iconCls:'icon-searchimg'">
+                    图片搜索
+                </div>
+                <div id="mnImgIndex" data-options="iconCls:'icon-imgindex'">
+                    <a style="text-decoration: none; color: #3A3E43;" target="_blank" href="ImgIndex.aspx">图片库</a>
+                </div>
+                <div class="menu-sep">
+                </div>
+                <div id="mnWindowscommunite" data-options="iconCls:'icon-communite'">
+                    协同操作
+                </div>-->
+            </div>
+            <div id="mnHelp" style="width: 150px;">
+                <div id="mnHelphelp" data-options="iconCls:'icon-help'">
+                    帮助文档<span style="margin-left:30px;">Crtl+F1</span>
+                </div>
+                <div id="mnHelphelpsite" data-options="iconCls:'icon-helpsite'">
+                    网站
+                </div>
+                <div class="menu-sep"></div>
+                <div id="mnHelpsend" data-options="iconCls:'icon-send'">
+                    <a style="text-decoration: none; color: #3A3E43;" href="mailto:yangtze_yufei@163.com">反馈或报告</a>
+                </div>
+                <div class="menu-sep"></div>
+                <div id="mnHelpabout" data-options="iconCls:'icon-about'">
+                    关于
+                </div>
+            </div>
+        </div>
+        <div id="option">
+            <ul id="alloption">
+                <li>
+                    <img id="objectimg" style="margin-right: 5px;" src="Images/tools/Pencil.png" />
+                </li>
+                <li><span id="objectname">铅笔</span></li>
+                <li id="opselectArea">&nbsp;&nbsp;|&nbsp;&nbsp;选择框：<select class="easyui-combobox"
+                    id="selArea" data-options="panelHeight:'auto'">
+                    <option value="rect">矩形</option>
+                    <option value="round">圆形</option>
+                </select></li>
+                <li id="opZoom"><a href="#" title="放大" id="opzoomin" class="easyui-linkbutton" data-options="iconCls:'icon-zoomin',plain:true"></a><a href="#" title="缩小" id="opzoomout" class="easyui-linkbutton" data-options="iconCls:'icon-zoomout',plain:true"></a></li>
+                <li id="opGradient">&nbsp;&nbsp;|&nbsp;&nbsp;渐变模式：<select class="easyui-combobox"
+                    id="selGradient" data-options="panelHeight:'auto'">
+                    <option value="linear">线性</option>
+                    <option value="reflection">反射</option>
+                    <option value="diamond">钻石</option>
+                    <option value="radiation">放射</option>
+                </select></li>
+                <li id="opPenStyle">&nbsp;&nbsp;|&nbsp;&nbsp;笔型：<select class="easyui-combobox" id="selPenStyle"
+                    data-options="panelHeight:'auto'">
+                    <option value="calligraphybrush ">书法画笔</option>
+                    <option value="airbrush">喷枪</option>
+                    <option value="crayon">蜡笔</option>
+                    <option value="markingpen">记号笔</option>
+                    <option value="waterdrawingbrush">水彩画笔</option>
+                </select></li>
+                <li id="penWdth">&nbsp;&nbsp;|&nbsp;&nbsp;笔头大小：<input class="easyui-numberspinner"
+                    id="penwidthshow" value="1" data-options="min:1,max:100" />
+                </li>
+                <li id="penAl">&nbsp;&nbsp;|&nbsp;&nbsp;不透明度：<input class="easyui-numberspinner"
+                    id="alphashow" value="100" style="width: 60px;" data-options="min:1,max:100,suffix:'%'" /></li>
+                <li id="pStyleSelect">&nbsp;&nbsp;|&nbsp;&nbsp;笔头样式：<select class="easyui-combobox"
+                    id="hStyle" data-options="panelHeight:'auto'">
+                    <option value="butt">粗</option>
+                    <option value="round">圆</option>
+                    <option value="square">平</option>
+                </select></li>
+                <li id="paintpenBlur">&nbsp;&nbsp;|&nbsp;&nbsp;模糊程度：<input class="easyui-numberspinner"
+                    id="ptpenBlurShow" value="1" style="width: 60px;" data-options="min:1,max:100,suffix:'%'" />
+                </li>
+                <li id="opEraserSize">&nbsp;&nbsp;|&nbsp;&nbsp;宽度：<input class="easyui-numberspinner"
+                    id="selEraserSize" value="1" style="width: 60px;" data-options="min:1,max:100" />
+                </li>
+                <li id="txtFamily">&nbsp;&nbsp;|&nbsp;&nbsp;字体：<select class="easyui-combobox" id="seltxtFamily"
+                    data-options="panelHeight:'auto'" style="width: 80px;">
+                    <option value="微软雅黑">微软雅黑</option>
+                    <option value="宋体">宋体</option>
+                    <option value="楷体">楷体</option>
+                    <option value="隶书">隶书</option>
+                    <option value="新宋体">新宋体</option>
+                    <option value="幼圆">幼圆</option>
+                    <option value="仿宋">仿宋</option>
+                    <option value="黑体">黑体</option>
+                    <option value="华文彩云">华文彩云</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Arial Black">Arial Black</option>
+                    <option value="Batang">Batang</option>
+                    <option value="Bell MT">Bell MT</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Courier">Courier</option>
+                    <option value="Calibri">Calibri</option>
+                </select></li>
+                <li id="txtSize">&nbsp;&nbsp;|&nbsp;&nbsp;字号：<select class="easyui-combobox" id="seltxtSize"
+                    data-options="panelHeight:'auto'" style="width: 80px;">
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="22">22</option>
+                    <option value="24">24</option>
+                    <option value="26">26</option>
+                    <option value="28">28</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="72">72</option>
+                </select></li>
+                <li id="opbold">&nbsp;&nbsp;|&nbsp;&nbsp;加粗:
+                    <input id="chekbold" type="checkbox" />
+                </li>
+                <li id="opitalic">&nbsp;&nbsp;|&nbsp;&nbsp;倾斜:
+                    <input id="chekitalic" type="checkbox" />
+                </li>
+                <li id="opunderline">&nbsp;&nbsp;|&nbsp;&nbsp;下划线:
+                    <input id="chekunderline" type="checkbox" />
+                </li>
+                <li id="opnodeleteline">&nbsp;&nbsp;|&nbsp;&nbsp;删除线:
+                    <input id="chekdeleteline" type="checkbox" />
+                </li>
+                <li id="txtAlign">&nbsp;&nbsp;|&nbsp;&nbsp;对齐：<select class="easyui-combobox" id="seltxtAlign"
+                    data-options="panelHeight:'auto'" style="width: 80px;">
+                    <option value="left">左对齐</option>
+                    <option value="center">居中</option>
+                    <option value="right">右对齐</option>
+                </select></li>
+                <li id="opisfill">&nbsp;&nbsp;|&nbsp;&nbsp;是否填充:
+                    <input id="chekfill" type="checkbox" />
+                </li>
+                <li id="opiscirclecorner">&nbsp;&nbsp;|&nbsp;&nbsp;是否圆角:
+                    <input id="chekcirclecorner" type="checkbox" />
+                </li>
+                <li id="opiscircle">&nbsp;&nbsp;|&nbsp;&nbsp;是否圆:
+                    <input id="chekcircle" type="checkbox" />
+                </li>
+                <li id="optriangle">&nbsp;&nbsp;|&nbsp;&nbsp;三角形：<select class="easyui-combobox"
+                    id="seltriangle" data-options="panelHeight:'auto'" style="width: 90px;">
+                    <option value="righttriangle">直角三角形</option>
+                    <option value="regulartriangle">等腰三角形</option>
+                </select></li>
+                <li id="opisregularpolygon">&nbsp;&nbsp;|&nbsp;&nbsp;是否为正多边形:
+                    <input id="chkisregularpolygon" type="checkbox" />
+                </li>
+                <li id="opdeepreduce"><a href="#" title="加深" id="opdeepen" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-add',plain:true"></a><a href="#" title="减淡" id="opreduce"
+                        class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true"></a>
+                </li>
+                <li id="opdeeppercent">&nbsp;&nbsp;|&nbsp;&nbsp;调节比例：<input class="easyui-numberspinner"
+                    id="Text1" value="1" style="width: 60px;" data-options="min:1,max:100,suffix:'%'" />
+                </li>
+                <li id="opline">&nbsp;&nbsp;|&nbsp;&nbsp;线条样式：<select class="easyui-combobox" id="selline"
+                    data-options="panelHeight:'auto'" style="width: 80px;">
+                    <option value="solid">实线</option>
+                    <option value="dottedline1">虚线1</option>
+                    <option value="dottedline2">虚线2</option>
+                    <option value="dottedline3">虚线3</option>
+                </select></li>
+                <li id="opothershap">&nbsp;&nbsp;|&nbsp;&nbsp;形状选择：<select class="easyui-combobox"
+                    id="selorthershap" data-options="panelHeight:'auto'" style="width: 80px;">
+                    <option value="arrow">箭头</option>
+                    <option value="flower">花</option>
+                    <option value="person">人物</option>
+                    <option value="sun">太阳</option>
+                </select></li>
+            </ul>
+        </div>
+    </div>
+    <div data-options="region:'center'" style="padding: 0px; overflow: hidden;">
+        <div id="tabDraw">
+            <div title="新建画布1" data-options="closable:true,iconCls:'icon-log'" style="background-color: #C9D3E2;">
+                <div id="firstDrawWin" class="drawWindow" ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
+                    <canvas id="showcanvas">你的浏览器不支持canvas!</canvas>
+                    <canvas id="tempcanvas"></canvas>
+                    <canvas id="gridcanvas"></canvas>
+                </div>
+            </div>
+        </div>
+        <div id="tools" class="easyui-dialog" data-options="iconCls:'icon-tools'" title="工具箱"
+            style="width: 86px; height: 420px; left: 10px; top: 100px;">
+            <a href="#" title="选择工具（S）" id="btnSelect" class="easyui-linkbutton" data-options="iconCls:'icon-btnSelect',plain:true"></a><a href="#" title="移动工具（M）" id="btnMove" class="easyui-linkbutton" data-options="iconCls:'icon-btnMove',plain:true"></a><a href="#" title="套索工具（A）" id="btnLasso" class="easyui-linkbutton" data-options="iconCls:'icon-btnLasso',plain:true"></a><a href="#" title="缩放工具（Z）" id="btnZoomAll" class="easyui-linkbutton" data-options="iconCls:'icon-btnZoomAll',plain:true"></a><a href="#" title="手抓工具（H）" id="btnHand" class="easyui-linkbutton" data-options="iconCls:'icon-btnHand',plain:true"></a><a href="#" title="填充工具（F）" id="btnFill" class="easyui-linkbutton" data-options="iconCls:'icon-btnFill',plain:true"></a><a href="#" title="渐变工具（N）" id="btnGradient" class="easyui-linkbutton" data-options="iconCls:'icon-btnGradient',plain:true"></a><a href="#" title="画笔（B）" id="btnPaintBrush" class="easyui-linkbutton" data-options="iconCls:'icon-btnPaintBrush',plain:true"></a><a href="#" title="铅笔（P）" id="btnPencil" class="easyui-linkbutton" data-options="iconCls:'icon-btnPencil',plain:true"></a><a href="#" title="橡皮擦（E）" id="btnEraser" class="easyui-linkbutton" data-options="iconCls:'icon-btnEraser',plain:true"></a><a href="#" title="放大镜（O）" id="btnZoomMiro" class="easyui-linkbutton" data-options="iconCls:'icon-btnZoomMiro',plain:true"></a><a href="#" title="裁剪（C）" id="btnSelectCut" class="easyui-linkbutton" data-options="iconCls:'icon-btnSelectCut',plain:true"></a><a href="#" title="文本（T）" id="btnText" class="easyui-linkbutton" data-options="iconCls:'icon-btnText',plain:true"></a><a href="#" title="直线（L）" id="btnLine" class="easyui-linkbutton" data-options="iconCls:'icon-btnLine',plain:true"></a><a href="#" title="曲线（V）" id="btnCurve" class="easyui-linkbutton" data-options="iconCls:'icon-btnCurve',plain:true"></a><a href="#" title="矩形（R）" id="btnRectangle" class="easyui-linkbutton" data-options="iconCls:'icon-btnRectangle',plain:true"></a><a href="#" title="椭圆（I）" id="btnEllipse" class="easyui-linkbutton" data-options="iconCls:'icon-btnEllipse',plain:true"></a><a href="#" title="三角形（G）" id="btnTriangle" class="easyui-linkbutton" data-options="iconCls:'icon-btnTriangle',plain:true"></a><a href="#" title="多边形（Y）" id="btnPolygon" class="easyui-linkbutton" data-options="iconCls:'icon-btnPolygon',plain:true"></a><a href="#" title="其他形状（W）" id="btnOtherShap" class="easyui-linkbutton" data-options="iconCls:'icon-btnOtherShap',plain:true"></a><a href="#" title="图章（X）" id="btnClone" class="easyui-linkbutton" data-options="iconCls:'icon-btnClone',plain:true"></a><a href="#" title="透明度（D）" id="btnAlpha" class="easyui-linkbutton" data-options="iconCls:'icon-btnAlpha',plain:true"></a><span id="colorselect" title="颜色选择器"></span>
+        </div>
+        <div id="drawtext" class="easyui-dialog" data-options="iconCls:'icon-btnText',closed: true"
+            title="绘制文本" style="width: 250px; height: 125px; left: 10px; top: 525px;">
+            <textarea id="txtInput" class="txtInputStyle" style="width: 98%; height: 60%;"></textarea>
+            <div style="float: right; margin-top: 5px;">
+                <span id="drawTextPosition"></span><a href="#" id="drawtextCancel" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-cancel'">取消</a> <a href="#" id="drawtextOK" class="easyui-linkbutton"
+                        data-options="iconCls:'icon-ok'">确定</a>
+            </div>
+        </div>
+        <div id="opration" title="操作" data-options="iconCls:'icon-history'" style="width: 250px; height: 200px; top: 100px;">
+            <div class="easyui-tabs" style="height: 160px;">
+                <div id="history" title="历史记录">
+                    <div id="lsthitory" style="height: 110px; overflow-x: hidden; overflow-y: auto;">
+                        <a href="#" style="width: 100%;" title="新建" class="easyui-linkbutton" data-options="iconCls:'icon-new',plain:true">新建</a>
+                        <br />
+                    </div>
+                    <div style="height: 25px; width: 94%; position: absolute; bottom: 6px; border-top: 1px solid #95B8E7; background-color: #FFF">
+                        <a href="#" id="historyundoall" title="撤销所有" class="easyui-linkbutton" data-options="iconCls:'icon-undoall',plain:true,disabled:true"></a><a href="#" id="historyundo" title="撤销" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true,disabled:true"></a><a href="#" id="historyredo" title="重做" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true,disabled:true"></a><a href="#" id="historyredoall" title="重做所有" class="easyui-linkbutton" data-options="iconCls:'icon-redoall',plain:true,disabled:true"></a>
+                    </div>
+                </div>
+                <div id="level" title="图层管理">
+                    <div id="levelList" style="height: 110px; overflow-x: hidden; overflow-y: auto;">
+                        <a href="#" id="levelbgroud" style="width: 100%;" title="背景" class="easyui-linkbutton" data-options="iconCls:'icon-background',plain:true">背景<input id="cklebelbgroud" type="checkbox" checked="true" /></a>
+                        <br />
+                    </div>
+                    <div style="height: 25px; width: 94%; position: absolute; bottom: 6px; border-top: 1px solid #95B8E7; background-color: #FFF">
+                        <a href="#" id="levellstNew" title="新建图层" class="easyui-linkbutton" data-options="iconCls:'icon-newlevel',plain:true"></a><a href="#" id="levellstDelete" title="删除图层" class="easyui-linkbutton" data-options="iconCls:'icon-no',plain:true,disabled:true"></a><a href="#" id="levellstCopy" title="复制图层" class="easyui-linkbutton" data-options="iconCls:'icon-copylevel',plain:true"></a><a href="#" id="levellstMoveUp" title="向上移动图层" class="easyui-linkbutton" data-options="iconCls:'icon-uplevel',plain:true"></a><a href="#" id="levellstMoveDown" title="向下移动图层" class="easyui-linkbutton" data-options="iconCls:'icon-downlevel',plain:true"></a><a href="#" id="levellstInfo" title="图层属性" class="easyui-linkbutton" data-options="iconCls:'icon-levelinfo',plain:true"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'south'" style="height: 20px;">
+        <div style="float: left; margin-left: 20px;">
+            <span id="toolDescrib">铅笔：按下左键并拖动</span> <span id="spanSize"></span>
+        </div>
+        <div style="float: right; margin-right: 20px;">
+            <span id="Coordinate">X:20,Y:40</span>
+        </div>
+    </div>
+    <div id="myWindow" class="easyui-window" closed="true">
+    </div>
+    <div id="myWindowChild" class="easyui-window" closed="true">
+    </div>
+    <div id="diamnFileNew" class="easyui-dialog" title="新建" style="width: 300px; height: 200px"
+        data-options="
+                iconCls: 'icon-new',
+                modal:true,
+                closed: true,
+                buttons: [{
+                    text:'取消',
+                    iconCls:'icon-cancel',
+                    handler:function(){
+                         $('#diamnFileNew').dialog('close');
+                    }
+                },
+                {
+                    text:'确定',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        CreatedrawWindow();
+                    }
+                }]
+            ">
+        <table cellpadding="5" align="center">
+            <tr>
+                <td>名称:
+                </td>
+                <td>
+                    <input class="txtInputStyle" id="txtImgName" value="新建画布" />
+                </td>
+            </tr>
+            <tr>
+                <td>高度:
+                </td>
+                <td>
+                    <input class="easyui-numberspinner" id="spiImgHeight" style="width: 80px;" value="600" />&nbsp;像素
+                </td>
+            </tr>
+            <tr>
+                <td>宽度:
+                </td>
+                <td>
+                    <input class="easyui-numberspinner" id="spiImgWidth" style="width: 80px;" value="800" />&nbsp;像素
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="diamnImageautolevel" class="easyui-dialog" title="色阶" style="width: 300px; height: 200px"
+        data-options="
+                iconCls: 'icon-autolevel',
+                modal:true,
+                closed: true,
+                buttons: [{
+                    text:'确定',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        alert('ok');
+                    }
+                },{
+                    text:'取消',
+                    iconCls:'icon-cancel',
+                    handler:function(){
+                         $('#diamnImageautolevel').dialog('close');
+                    }
+                }]
+            ">
+        <table cellpadding="5" align="center">
+            <tr>
+                <td>色阶调整
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="diamnImagecolorpalettes" class="easyui-dialog" title="色相/饱和度" style="width: 320px; height: 270px"
+        data-options="
+                iconCls: 'icon-colorpalettes',
+                modal:true,
+                closed: true,
+                buttons: [{
+                    text:'取消',
+                    iconCls:'icon-cancel',
+                    handler:function(){
+                         $('#diamnImagecolorpalettes').dialog('close');
+                    }
+                },{
+                    text:'确定',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        alert('ok');
+                    }
+                }]
+            ">
+        <fieldset style="height: 80px; margin: 10px;">
+            <legend>色相</legend>
+            <div style="margin: 10px;">
+                <input class="easyui-slider" value="50" style="width: 250px;" data-options="
+				showTip: true,
+				rule: [0,'|',25,'|',50,'|',75,'|',100],
+				tipFormatter: function(value){
+					return value;
+				},
+				onChange: function(value){
+					//根据Value值，进行调整
+				}" />
+            </div>
+        </fieldset>
+        <fieldset style="height: 80px; margin: 10px;">
+            <legend>饱和度</legend>
+            <div style="margin: 10px;">
+                <input class="easyui-slider" value="50" style="width: 250px" data-options="
+				showTip: true,
+				rule: [0,'|',25,'|',50,'|',75,'|',100],
+				tipFormatter: function(value){
+					return value;
+				},
+				onChange: function(value){
+					//根据Value值，进行调整
+				}" />
+            </div>
+        </fieldset>
+    </div>
+    <div id="diamnImageinputcc" class="easyui-dialog" title="旋转任意角度" style="width: 200px; height: 160px"
+        data-options="
+                iconCls: 'icon-inputcc',
+                modal:true,
+                closed: true,
+                buttons: [{
+                    text:'取消',
+                    iconCls:'icon-cancel',
+                    handler:function(){
+                         $('#diamnImageinputcc').dialog('close');
+                    }
+                },
+                {
+                    text:'确定',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                            rotatebydegress();
+                    }
+                }]
+            ">
+        <table cellpadding="8">
+            <tr>
+                <td>角度:
+                </td>
+                <td>
+                    <input class="easyui-numberspinner" id="spnimnImageinputcc" value="1" style="width: 60px;"
+                        data-options="min:1,max:360,suffix:'°'" />
+                </td>
+            </tr>
+            <tr>
+                <td>旋转方向:
+                </td>
+                <td>
+                    <select class="easyui-combobox"
+                        id="selImgrateto" data-options="panelHeight:'auto'">
+                        <option value="right">顺时针</option>
+                        <option value="left">逆时针</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="diamnLightSlide" class="easyui-dialog" title="亮度/对比度" style="width: 320px; height: 270px"
+        data-options="
+                iconCls: 'icon-light',
+                modal:true,
+                closed: true,
+                buttons: [{
+                    text:'取消',
+                    iconCls:'icon-cancel',
+                    handler:function(){
+                         $('#diamnLightSlide').dialog('close');
+                    }
+                },{
+                    text:'确定',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        alert('ok');
+                    }
+                }]
+            ">
+        <fieldset style="height: 80px; margin: 10px;">
+            <legend>亮度</legend>
+            <div style="margin: 10px;">
+                <input class="easyui-slider" value="0" style="width: 260px;" data-options="
+				showTip: true,
+                min:-50,
+                max:50,
+				rule: [-50,'|',-25,'|',0,'|',25,'|',50],
+				tipFormatter: function(value){
+					return value;
+				},
+				onChange: function(value){
+					//根据Value值，进行调整
+                    light(value);
+				}" />
+            </div>
+        </fieldset>
+        <fieldset style="height: 80px; margin: 10px;">
+            <legend>对比度</legend>
+            <div style="margin: 10px;">
+                <input class="easyui-slider" value="0" style="width: 260px" data-options="
+				showTip: true,
+                min:-50,
+                max:50,
+				rule: [-50,'|',-25,'|',0,'|',25,'|',50],
+				tipFormatter: function(value){
+					return value;
+				},
+				onChange: function(value){
+					//根据Value值，进行调整
+                    compare(value);
+				}" />
+            </div>
+        </fieldset>
+    </div>
+    <div id="diamnSave" class="easyui-dialog" title="保存" style="width: 340px; height: 160px"
+        data-options="
+                iconCls: 'icon-save',
+                modal:true,
+                closed: true,
+                buttons: [{
+                    text:'取消',
+                    iconCls:'icon-cancel',
+                    handler:function(){
+                         $('#diamnSave').dialog('close');
+                    }
+                },
+                {
+                    text:'确定',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        SaveImg();
+                    }
+                }]
+            ">
+        <table cellpadding="5">
+            <tr>
+                <td>名称：</td>
+                <td>
+                    <input id="txtImgSaveName" class="easyui-textbox" type="text" name="txtImgSaveName" style="width: 180px;" />.png</td>
+            </tr>
+            <tr>
+                <td>保存位置：</td>
+                <td>
+                    <input id="txtImgSavePath" class="easyui-textbox" type="text" name="txtImgSavePath" style="width: 210px;" value="C:\WebPhotoshop\" /></td>
+            </tr>
+        </table>
+    </div>
+    <div id="diamnSaveAs" class="easyui-dialog" title="另存为" style="width: 340px; height: 160px"
+        data-options="
+                iconCls: 'icon-save',
+                modal:true,
+                closed: true,
+                buttons: [{
+                    text:'取消',
+                    iconCls:'icon-cancel',
+                    handler:function(){
+                         $('#diamnSaveAs').dialog('close');
+                    }
+                },
+                {
+                    text:'确定',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        SaveAsImg();
+                    }
+                }]
+            ">
+        <table cellpadding="5">
+            <tr>
+                <td>名称：</td>
+                <td>
+                    <input id="txtImgSaveAsName" class="easyui-textbox" type="text" name="txtImgSaveAsName" style="width: 160px;" />
+
+                    <select class="easyui-combobox" id="combImgSaveAsExtend"
+                        data-options="panelHeight:'auto'" style="width: 60px;">
+                        <option value="png">png</option>
+                        <option value="bmp">bmp</option>
+                        <option value="gif">gif</option>
+                        <option value="icon">icon</option>
+                        <option value="jpeg">jpeg</option>
+                        <option value="tiff">tiff</option>
+                        <option value="wmf">wmf</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>保存位置：</td>
+                <td>
+                    <input id="txtImgSaveAsPath" class="easyui-textbox" type="text" name="txtImgSaveAsPath" style="width: 230px;" value="C:\WebPhotoshop\" /></td>
+
+            </tr>
+        </table>
+    </div>
+    <div id="diamnCommunite" class="easyui-dialog" title="协同操作" style="width: 250px; height: 340px; top: 310px; left: 1106px;"
+        data-options="
+                iconCls: 'icon-communite',
+                modal:false,
+                closed: true
+            ">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'east',collapsed:true" title="联系人" style="width: 80px;">
+                <select id="selallUsers" multiple="multiple" style="width: 100%; height: 100%;">
+                </select>
+            </div>
+            <div data-options="region:'center'">
+                <div class="easyui-layout" data-options="fit:true">
+                    <div data-options="region:'north'" style="height: 150px; overflow: hidden;">
+                        <div id="divAllCommunicate" style="width: 100%; height: 100%; overflow: auto;">
+                        </div>
+                    </div>
+                    <div data-options="region:'center'" style="overflow: hidden;">
+                        <textarea id="allsendcontent" name="content" style="width: 100%; height: 130px; visibility: hidden;"></textarea>
+                    </div>
+                    <div data-options="region:'south'" style="height: 30px">
+                        接收人：
+                <select id="selMsgTo">
+                    <option value="0">所有人</option>
+                </select>
+                        <a id="A1" title="或按下Ctrl+Enter键发送消息" style="float: right;" href="#" class="easyui-linkbutton"
+                            onclick="sendAllContent();">发送</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="colorvalue" />
+</body>
+<script charset="gb2312" src="JScript/RulersGuides/Event.js"></script>
+<script charset="gb2312" src="JScript/RulersGuides/Dragdrop.js"></script>
+<script charset="gb2312" src="JScript/RulersGuides/RulersGuides.js"></script>
+<script src="JScript/CodeJS/main.js" type="text/javascript"></script>
+<script src="JScript/CodeJS/changeTheme.js" type="text/javascript"></script>
+<script src="JScript/Mousetrap/mousetrap.min.js"></script>
+<script src="JScript/CodeJS/keypressEvent.js"></script>
+</html>
