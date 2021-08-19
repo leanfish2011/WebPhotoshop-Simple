@@ -51,7 +51,7 @@ function onChangeTheme(theme) {
     }
     //更换皮肤
     var link = $('#content').find('link:first');
-    link.attr('href', '../JScript/jquery-easyui/themes/' + theme + '/easyui.css');
+    link.attr('href', 'JScript/jquery-easyui/themes/' + theme + '/easyui.css');
 }
 
 //#endregion
