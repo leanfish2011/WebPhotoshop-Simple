@@ -459,19 +459,19 @@ $('#mnLevel div').click(function () {
                 levelOpration.addLevel();
                 break;
             case "mnLevelno":
-                alert("删除图层");
+                alert("待实现！删除图层");
                 break;
             case "mnLevelcopylevel":
-                alert("复制图层");
+                alert("待实现！复制图层");
                 break;
             case "mnLeveluplevel":
-                alert("向上移动图层");
+                alert("待实现！向上移动图层");
                 break;
             case "mnLeveldownlevel":
-                alert("向下移动图层");
+                alert("待实现！向下移动图层");
                 break;
             case "mnLevellevelinfo":
-                alert("图层属性");
+                alert("待实现！图层属性");
                 break;
         }
     }
@@ -886,7 +886,7 @@ $('#mnHelp div').click(function () {
                 window.open("Code/Help.htm");
                 break;
             case "mnHelphelpsite": //WebPhotoshop网站
-                window.open("http://www.cnblogs.com/yangtze-yufei/archive/2013/03/16/2963682.html");
+                window.open("https://www.cnblogs.com/leanfish/");
                 break;
             case "mnHelpabout": //关于WebPhotoshop
                 showMyWindow('icon-about', '关于WebPhotoshop', 'Code/About.htm', 600, 400, true, false, false, true);
@@ -3241,7 +3241,7 @@ function conslatepainting() {
 //#endregion
 
 //#region积木效果
-//对图像中的各个像素点着重(即加大分像素的颜色值)着色. 
+//对图像中的各个像素点着重(即加大分像素的颜色值)着色.
 
 function conslatewood() {
     var imgd = show.getImageData(0, 0, mapWidth, mapHeight);  //从指定的矩形区域获取 canvas 像素数组
